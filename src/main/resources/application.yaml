@@ -1,0 +1,52 @@
+server:
+  port: 9010
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+
+spring:
+  application:
+    name: users
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    liquibase:
+      enabled: true
+      drop-first: false
+      change-log: classpath:db/changelog/db.changelog-master.yaml
+      default-schema: public
+  datasource:
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASS}
+    url: jdbc:postgresql://${DB_HOST}/users
+  eureka:
+    client:
+      serviceUrl:
+        defaultZone: http://${EUREKA_HOST}:8761/eureka
+  kafka:
+    bootstrap-servers: http://${KAFKA_HOST}:29092, http://${KAFKA_HOST}:29093
+    producer:
+      key-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    listener:
+      group-id:
+        name:
+      topics:
+        name:
+    publisher:
+      topics:
+        event:
+
+exchange-url:
+  bingx-perpetual: https://open-api.bingx.com
+  binance-perpetual:
+    v1: https://fapi.binance.com/fapi/v1
+
+secret-key: ${SECRET_NUMBER}
+
+algorithm: ${ALGORITHM}
