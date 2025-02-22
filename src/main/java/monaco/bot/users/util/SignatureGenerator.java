@@ -1,6 +1,5 @@
 package monaco.bot.users.util;
 
-
 import lombok.experimental.UtilityClass;
 import org.apache.commons.codec.digest.HmacUtils;
 
