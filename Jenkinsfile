@@ -34,7 +34,7 @@ pipeline {
         stage('Building the application') {
             steps {
                 script {
-                    sh './gradlew bootBuildImage'
+                    sh 'chmod +x gradlew && ./gradlew bootBuildImage'
                 }
             }
         }
