@@ -73,7 +73,9 @@ pipeline {
                         docker ps -a -f name=users-service -q | xargs --no-run-if-empty docker rm -f || true
 
                         echo "Deploying new container..."
-                        docker run -d --name users-service -p 9010:9010 \
+                        docker run -d --name users-service \
+                            --network moritz-network \
+                            -p 9010:9010 \
                             -e POSTGRES_USER="$POSTGRES_USER" \
                             -e POSTGRES_PASS="$POSTGRES_PASS" \
                             -e DB_HOST="$DB_HOST" \
