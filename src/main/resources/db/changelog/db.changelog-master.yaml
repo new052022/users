@@ -7,3 +7,5 @@ databaseChangeLog:
       file: db/changelog/db.insert_into_exchange_table.sql
   - include:
       file: db/changelog/db.create_user_exchange_info_table.sql
+  - include:
+      file: db/changelog/2322025_alter_table_user_exchange_info.sql
